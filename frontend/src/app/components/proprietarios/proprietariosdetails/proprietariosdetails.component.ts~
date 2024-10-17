@@ -1,0 +1,17 @@
+import { Component } from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
+
+@Component({
+  selector: 'app-proprietariosdetails',
+  standalone: true,
+    imports: [
+        FormsModule,
+        MdbFormsModule
+    ],
+  templateUrl: './proprietariosdetails.component.html',
+  styleUrl: './proprietariosdetails.component.scss'
+})
+export class ProprietariosdetailsComponent {
+
+}

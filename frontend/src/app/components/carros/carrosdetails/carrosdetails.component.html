@@ -1,0 +1,60 @@
+<br>
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-12 centralizar topo">
+      <div class="card">
+        <div class="card-body">
+          <h3>Cadastro de carro</h3>
+          <mdb-form-control>
+            <input mdbInput type="text" id="usuario" class="form-control" [(ngModel)]="carro.nome"/>
+            <label mdbLabel class="form-label" for="usuario">Nome</label>
+          </mdb-form-control>
+          <br/>
+
+          <div>
+            @if (carro.marca == null || carro.marca.id === 0) {
+              <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="buscarMarcas()">
+                Buscar Marca
+              </button>
+            } @else {
+              <span class = "text-primary"> {{carro.marca.nome}}</span>
+              <button type="button" class="btn btn-warning btn-rounded" mdbRipple (click)="buscarMarcas()">
+                Trocar Marca
+              </button>
+            }
+          </div>
+          <br>
+
+          <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">Salvar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #modalMarcas>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+
+    <app-marcaslist [esconderBotoes]="true" (retorno)="retornoMarca($event)"></app-marcaslist>
+
+  </div>
+
+</ng-template>
+
+
+
+
+
+
