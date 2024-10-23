@@ -4,10 +4,11 @@ export class Carro {
   id! : number;
   nome!: string;
   marca!: Marca;
+  proprietarios: Proprietario[] = [];
 
-  constructor(id: number, nome: string, marca: Marca) {
+  constructor(id: number, nome: string, marca: Marca | null) {
     this.id = id;
     this.nome = nome;
-    this.marca = marca;
+    if (marca) this.marca = marca;
   }
 }

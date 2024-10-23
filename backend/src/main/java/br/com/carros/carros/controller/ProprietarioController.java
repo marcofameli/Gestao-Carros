@@ -7,6 +7,7 @@ import br.com.carros.carros.service.ProprietarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,12 +40,15 @@ public class ProprietarioController {
         }
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listAll")
     public ResponseEntity<List<Proprietario>> listAll() {
         try {
             List<Proprietario> lista = this.proprietarioService.listAll();
             return new ResponseEntity<>(lista, HttpStatus.OK);
         } catch (Exception e) {
+            System.err.println("Erro ao listar proprietários: " + e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

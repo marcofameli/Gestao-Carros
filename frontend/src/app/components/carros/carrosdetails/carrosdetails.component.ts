@@ -8,11 +8,13 @@ import {CarroService} from '../../../services/carro.service';
 import {Marca} from '../../../models/marca';
 import {MdbModalRef, MdbModalService} from 'mdb-angular-ui-kit/modal';
 import {MarcaslistComponent} from '../../marcas/marcaslist/marcaslist.component';
+import {Proprietario} from '../../../models/proprietario';
+import {ProprietarioslistComponent} from '../../proprietarios/proprietarioslist/proprietarioslist.component';
 
 @Component({
   selector: 'app-carrosdetails',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule, MarcaslistComponent],
+  imports: [MdbFormsModule, FormsModule, MarcaslistComponent, ProprietarioslistComponent],
   templateUrl: './carrosdetails.component.html',
   styleUrl: './carrosdetails.component.scss'
 })
@@ -26,6 +28,7 @@ export class CarrosdetailsComponent {
 
   modalService = inject(MdbModalService);
   @ViewChild('modalMarcas') modalMarcas!: TemplateRef<any>;
+  @ViewChild('modalProprietarios') modalProprietarios!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 
 
@@ -97,14 +100,35 @@ export class CarrosdetailsComponent {
 
     }
   }
-   buscarMarcas() {
-     this.modalRef = this.modalService.open(this.modalMarcas, {modalClass : 'modal-lg'});
-   }
-   retornoMarca (marca: Marca) {
-       this.carro.marca = marca;
-       this.modalRef.close();
-   }
 
+  buscarMarcas() {
+    this.modalRef = this.modalService.open(this.modalMarcas, {modalClass: 'modal-lg'});
+  }
+
+  buscarProprietarios() {
+    this.modalRef = this.modalService.open(this.modalProprietarios, {modalClass: 'modal-lg'});
+  }
+
+  retornoMarca(marca: Marca) {
+    this.carro.marca = marca;
+    this.modalRef.close();
+  }
+
+  retornoProprietario(proprietario: Proprietario) {
+    if (this.carro.proprietarios == null) {
+      this.carro.proprietarios = [];
+    }
+
+    this.carro.proprietarios.push(proprietario);
+
+    this.modalRef.close();
+  }
+
+  desvincularProprietariodoCarro(proprietario: Proprietario) {
+
+    let posicao = this.carro.proprietarios.findIndex(x => { return x.id == proprietario.id })
+    this.carro.proprietarios.splice(posicao, 1);
+  }
 
 
 }

@@ -1,6 +1,7 @@
 package br.com.carros.carros.service;
 
 import br.com.carros.carros.entity.Carro;
+import br.com.carros.carros.entity.Marca;
 import br.com.carros.carros.entity.Proprietario;
 import br.com.carros.carros.repository.CarroRepository;
 import org.junit.jupiter.api.BeforeEach;

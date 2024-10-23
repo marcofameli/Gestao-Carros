@@ -7,12 +7,13 @@ import {CarrosdetailsComponent} from './components/carros/carrosdetails/carrosde
 import {MarcasdetailsComponent} from './components/marcas/marcasdetails/marcasdetails.component';
 import {MarcaslistComponent} from './components/marcas/marcaslist/marcaslist.component';
 import {ProprietarioslistComponent} from './components/proprietarios/proprietarioslist/proprietarioslist.component';
+import {loginGuard} from './auth/login.guard';
 
 export const routes: Routes = [
   {path: "", redirectTo: "login", pathMatch: 'full'},
   {path: "login", component: LoginComponent},
   {
-    path: "admin", component: PrincipalComponent, children: [
+    path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
       {path: "carros", component: CarroslistComponent},
       {path: "carros/new", component: CarrosdetailsComponent},
       {path: "carros/edit/:id", component: CarrosdetailsComponent},

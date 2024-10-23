@@ -18,12 +18,53 @@
                 Buscar Marca
               </button>
             } @else {
-              <span class = "text-primary"> {{carro.marca.nome}}</span>
+              <span class="text-primary"> {{ carro.marca.nome }}</span>
+
               <button type="button" class="btn btn-warning btn-rounded" mdbRipple (click)="buscarMarcas()">
                 Trocar Marca
               </button>
             }
           </div>
+          <br>
+
+          <div>
+
+            <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="buscarProprietarios()">
+              Buscar Proprietario
+            </button>
+            <br/>
+
+            <table border="1" class="table table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (proprietario of carro.proprietarios; track $index) {
+                  <tr>
+                    <td>{{ proprietario.id }}</td>
+                    <td>{{ proprietario.nome }}</td>
+                    <td class="direita">
+                        <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="desvincularProprietariodoCarro(proprietario)">
+                          Deletar
+                        </button>
+
+                    </td>
+                  </tr>
+                }
+              </tbody>
+
+            </table>
+
+
+
+
+          </div>
+
+
           <br>
 
           <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">Salvar</button>
@@ -37,7 +78,7 @@
 
 <ng-template #modalMarcas>
   <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Marcas</h5>
     <button
       type="button"
       class="btn-close"
@@ -53,6 +94,23 @@
 
 </ng-template>
 
+<ng-template #modalProprietarios>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleProprietarioLabel">Proprietarios</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+
+    <app-proprietarioslist [esconderBotoes]="true" (retorno)="retornoProprietario($event)"></app-proprietarioslist>
+
+  </div>
+
+</ng-template>
 
 
 
