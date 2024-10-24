@@ -18,11 +18,12 @@
                 Buscar Marca
               </button>
             } @else {
-              <span class="text-primary"> {{ carro.marca.nome }}</span>
-
               <button type="button" class="btn btn-warning btn-rounded" mdbRipple (click)="buscarMarcas()">
                 Trocar Marca
               </button>
+              <div class="teste">
+                {{ carro.marca.nome }}
+              </div>
             }
           </div>
           <br>
