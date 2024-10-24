@@ -4,50 +4,53 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h3> Listagem de Carros</h3>
+          <h3>Listagem de Carros</h3>
           <div class="direita">
             <button type="button" class="btn btn-warning btn-rounded" mdbRipple (click)="new()">
-              Novo</button>
-            <!--
-          <button type="button" class="btn btn-warning btn-rounded" mdbRipple routerLink="/admin/carros/new">
-            Novo</button>
-            -->
+              Novo
+            </button>
           </div>
           <br>
           <table border="1" class="table table-striped">
             <thead>
-             <tr>
-               <th>ID</th>
-               <th>Nome</th>
-               <th>Marca do carro</th>
-               <th>Ações</th>
-             </tr>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Marca do carro</th>
+              <th>Proprietários</th>
+            </tr>
             </thead>
             <tbody>
-            @for (carro of lista; track $index){
-             <tr>
-               <td>{{carro.id}}</td>
-               <td>{{carro.nome}}</td>
-               @if (carro.marca) {
-                 <td>{{carro.marca.nome}}</td>
-               } @else {
-                 <td>---</td>
-               }
-               <td class="direita">
-                 <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(carro)">
-                   <i class="material-icons">edit</i>
-                 </button>
-
-                 <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(carro)">
-                   <i class="material-icons">delete</i>
-                 </button>
-               </td>
-             </tr>
-            }
+              @for (carro of lista; track $index) {
+                <tr>
+                  <td>{{ carro.id }}</td>
+                  <td>{{ carro.nome }}</td>
+                  @if (carro.marca) {
+                    <td>{{ carro.marca.nome }}</td>
+                  } @else {
+                    <td>---</td>
+                  }
+                  <td>
+                    @if (carro.proprietarios.length > 0) {
+                      @for (proprietario of carro.proprietarios; track $index) {
+                          {{ proprietario.nome }}
+                        }
+                    } @else {
+                      <span>Sem proprietários</span>
+                    }
+                  </td>
+                  <td class="direita">
+                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(carro)">
+                      <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(carro)">
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </td>
+                </tr>
+              }
             </tbody>
-
           </table>
-
         </div>
       </div>
     </div>
@@ -65,9 +68,6 @@
     ></button>
   </div>
   <div class="modal-body">
-
     <app-carrosdetails [carro]="carroEdit" (retorno)="retornoDetalhe($event)"></app-carrosdetails>
-
   </div>
-
 </ng-template>

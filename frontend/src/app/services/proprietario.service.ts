@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Proprietario} from '../models/proprietario';
-import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,8 @@ import {environment} from '../../environments/environment';
 export class ProprietarioService {
   http = inject(HttpClient);
 
-  API = environment.SERVIDOR+'/api/proprietario';
-
+  // API = environment.SERVIDOR+'/api/proprietario';
+  API = "http://localhost:8080/api/proprietario";
 
   constructor() { }
 

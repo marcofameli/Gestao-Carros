@@ -20,7 +20,6 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -31,7 +30,7 @@
                   <td class="direita">
                     @if (esconderBotoes){
                       <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="select(proprietario)">
-                        <i class="material-icons">edit</i>
+                        <i class="material-icons">person</i>
                       </button>
                     } @else {
                       <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(proprietario)">

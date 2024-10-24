@@ -35,31 +35,52 @@
             <br/>
 
             <table border="1" class="table table-striped">
+
               <thead>
+
               <tr>
+
                 <th>ID</th>
+
                 <th>Nome</th>
-                <th>Ações</th>
+
+                <th>Proprietarios</th>
+
               </tr>
+
               </thead>
+
               <tbody>
+
                 @for (proprietario of carro.proprietarios; track $index) {
+
                   <tr>
+
                     <td>{{ proprietario.id }}</td>
+
                     <td>{{ proprietario.nome }}</td>
+
                     <td class="direita">
-                        <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="desvincularProprietariodoCarro(proprietario)">
-                          Deletar
-                        </button>
+
+                      <button type="button" class="btn btn-danger btn-rounded" mdbRipple
+
+                              (click)="desvincularProprietariodoCarro(proprietario)">
+
+                        Deletar
+
+                      </button>
+
 
                     </td>
+
                   </tr>
+
                 }
+
               </tbody>
 
+
             </table>
-
-
 
 
           </div>
@@ -67,12 +88,18 @@
 
           <br>
 
+
           <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">Salvar</button>
+
         </div>
+
       </div>
 
+
     </div>
+
   </div>
+
 </div>
 
 
@@ -111,6 +138,8 @@
   </div>
 
 </ng-template>
+
+
 
 
 

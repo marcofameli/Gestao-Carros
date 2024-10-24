@@ -21,12 +21,12 @@ public class Carro {
     private String nome;
     private int anoLancamento;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JsonIgnoreProperties("carros")
     private Marca marca;
 
 
-    @ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "carro_proprietario")
     private List<Proprietario> proprietarios;
 
